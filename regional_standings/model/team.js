@@ -107,9 +107,10 @@ class Team {
 
     static initializeSeedingModifiers( teams, context )
     {
-        // no work to do
-        if( teams.length === 0 )
+        // If there is no team value, exit the function
+        if( teams.length === 0 ){
             return;
+        }
 
         // Phase 1: Do calculations we can do directly from this team's data -- we don't rely on
         // any other team info to figure this data out.
@@ -176,8 +177,12 @@ class Team {
         } );
 
         // Finally, build modifiers from calculated values
-        function curveFunction( x ) { return Math.pow( 1 / ( 1 + Math.abs(Math.log10(x)) ), 1 ); }
-        function powerFunction( x ) { return Math.pow( x, 1 ) };
+        let curveFunction = ( value ) => {
+            return Math.pow( 1 / ( 1 + Math.abs(Math.log10( value )) ), 1 );
+        }
+        let powerFunction ( value ) => {
+            return Math.pow( value, 1 );
+        }
         
         teams.forEach( team => {
             team.modifiers.bounty       = curveFunction( team.opponentWinnings );
