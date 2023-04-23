@@ -19,10 +19,9 @@ function parsePrizePool( prizePool ) {
 }
 
 function sortMatches( matches, order = 'desc' ) {
-    if ( order === 'asc' )
-        matches.sort( (a, b) => a.matchStartTime - b.matchStartTime );
-    else 
-        matches.sort( (a, b) => b.matchStartTime - a.matchStartTime );
+    order === 'asc'
+        ? matches.sort( (a, b) => a.matchStartTime - b.matchStartTime )
+        : matches.sort( (a, b) => b.matchStartTime - a.matchStartTime );
 }
 
 function filterIncompleteMatches( matches ) {
